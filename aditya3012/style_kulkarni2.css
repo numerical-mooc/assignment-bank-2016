@@ -16,23 +16,23 @@
 }
 
 div.cell { /* set cell width */
-    width: 800px;
+    width: 750px;
 }
 
 div #notebook { /* centre the content */
     background: #fff; /* white background for content */
-    max-width: 1200px;
+    width: 1000px;
     margin: auto;
     padding-left: 0em;
 }
 
 #notebook li { /* More space between bullet points */
-    margin-top:0.4em;
+    margin-top:0.8em;
 }
 
 /* draw border around running cells */
 div.cell.border-box-sizing.code_cell.running { 
-    border: 0.5px solid #111;
+    border: 1px solid #111;
 }
 
 /* Put a solid color box around each cell and its output, visually linking them*/
@@ -49,9 +49,9 @@ div.text_cell_render{
     line-height: 140%;
     font-size: 125%;
     font-weight: 400;
-    width:800px;
-    margin-left:.1em;
-    margin-right:1em;
+    width:750px;
+    margin-left:.5em;
+    margin-right:.5em;
 }
 
 
