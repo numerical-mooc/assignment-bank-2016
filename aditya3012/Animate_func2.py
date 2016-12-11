@@ -9,20 +9,19 @@ from IPython.display import HTML
 
 
 nx =101
-dx =0.1
+dx =0.01
 nt= 150
-x = numpy.linspace(-10,10,nx)
+x = numpy.linspace(-20,20,nx)
 D =1
-alpha = 6
-u = 1/2 * numpy.tanh(x) + 1/2
+alpha = 1
+u = 8*(numpy.exp(-5*x**2)) 
 fig = pyplot.figure(figsize=(8,6))
-ax = pyplot.axes(xlim=(-10,10),ylim=(-0.5,1.5))
+ax = pyplot.axes(xlim=(-20,20),ylim=(-0.5,9))
 ax.set_xlabel('$x$')
 ax.set_ylabel('$u$')
 #ax.text(0,-0.25,'See how the curve levels off at u =1',color='red')
-#ax.annotate('See how the curve levels off at u =1',color='#ff7f0e',xy=(-5,1),xytext=(-9,1.4), arrowprops =dict(facecolor='black', shrink =0.05))
+ax.annotate('See how the curve levels off at u =1',color='#ff7f0e',xy=(-5,1),xytext=(-9,1.4), arrowprops =dict(facecolor='black', shrink =0.05))
 line = ax.plot([],[],color='c',ls=':',lw=3)[0]
-
 
 
 def CatchtheFisherwaveanimate(n):
@@ -36,6 +35,5 @@ def CatchtheFisherwaveanimate(n):
         u[0] = u[1] 
         u[-1] = u[-2]
         line.set_data(x,u)
-
 anim = animation.FuncAnimation(fig,CatchtheFisherwaveanimate,\
                                frames=nt,interval=60)
