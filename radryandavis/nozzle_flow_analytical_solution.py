@@ -74,6 +74,6 @@ def L2_rel_error(p, pn):
     -------
     Relative L2 norm of the difference
     
-    Source: laplace_helper.py in Numerical MOOC reference
+    Source: laplace_helper.py in Barba's reference, Practical Numerical Methods with Python
     '''
     return numpy.sqrt(numpy.sum((p - pn)**2)/numpy.sum(pn**2))
