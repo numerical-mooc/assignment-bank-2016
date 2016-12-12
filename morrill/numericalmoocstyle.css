@@ -16,7 +16,7 @@
 }
 
 div.cell { /* set cell width */
-    width: 750px;
+    width: 850px;
 }
 
 div #notebook { /* centre the content */
@@ -49,7 +49,7 @@ div.text_cell_render{
     line-height: 140%;
     font-size: 125%;
     font-weight: 400;
-    width:600px;
+    width:800px;
     margin-left:auto;
     margin-right:auto;
 }
