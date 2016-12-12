@@ -61,3 +61,19 @@ def nozzle_flow_analytical_solution(x, A):
     T = (1 + ((1.4-1)/2) * M**2)**(-1)
     
     return M, p, rho, T
+
+def L2_rel_error(p, pn):
+    ''' Compute the relative L2 norm of the difference
+    Parameters:
+    ----------
+    p : array of float
+        array 1
+    pn: array of float
+        array 2
+    Returns:
+    -------
+    Relative L2 norm of the difference
+    
+    Source: laplace_helper.py in Numerical MOOC reference
+    '''
+    return numpy.sqrt(numpy.sum((p - pn)**2)/numpy.sum(pn**2))
