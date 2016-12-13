@@ -42,12 +42,10 @@ def get_coeff(n,m,Lx,Ly,simple1=False,simple2=False):
     elif simple2==True:
         # things to simplify expresion
         pi = numpy.pi
-        ax = n*pi
-        ay = m*pi
 
         # for f(x,y) = 2sin(pi/4 x)sin(pi/4 y)
-        bx = -8*Lx*(4*numpy.sin(ax*Lx/4) + Lx*numpy.cos(ax)*numpy.cos(ax*Lx/4) - Lx)/(ax*(Lx**2 - 16))
-        by = -8*Ly*(4*numpy.sin(ay*Ly/4) + Ly*numpy.cos(ay)*numpy.cos(ay*Ly/4) - Ly)/(ay*(Ly**2 - 16))
+        bx = -8*Lx*(4*n*numpy.sin(pi*Lx/4)*numpy.sin(pi*n) + Lx*numpy.cos(pi*Lx/4)*numpy.cos(pi*n) - Lx)/(pi*(Lx**2 - 16*n**2))
+        by = -8*Ly*(4*m*numpy.sin(pi*Ly/4)*numpy.sin(pi*m) + Lx*numpy.cos(pi*Ly/4)*numpy.cos(pi*m) - Ly)/(pi*(Ly**2 - 16*m**2))
         b = (4/(Lx*Ly))*bx*by
 
     return b
@@ -90,7 +88,7 @@ def get_Fseries(x,y,n,m,Lx,Ly,c,nt,nx,ny,dt,f):
     # initiliaze p array
     p = numpy.ndarray((nt,ny,nx))
     if f==1:
-        # first simple f(x,y)
+        # first simple f(x,y) f(x,y) = cos(x)cos(y) and Neumann BCs
         for t in range(0,nt):
             for mi in range(0,m):
                 for ni in range(0,n):
@@ -102,7 +100,7 @@ def get_Fseries(x,y,n,m,Lx,Ly,c,nt,nx,ny,dt,f):
                     b = get_coeff(ni,mi,Lx,Ly,simple1=True) # coefficient of Fourier series
                     p[t] += b*numpy.cos(at*c*dt*t)*numpy.cos(ax*x)*numpy.cos(ay*y) # Fourier series summation
     elif f==2:
-        # second simple f(x,y)
+        # second simple f(x,y) = 2sin(pi/4 x)sin(pi/4 y) and Dirichlet BCs
         for t in range(0,nt):
             for mi in range(1,m+1):
                 for ni in range(1,n+1):
@@ -112,7 +110,7 @@ def get_Fseries(x,y,n,m,Lx,Ly,c,nt,nx,ny,dt,f):
                     at = numpy.sqrt(ax**2 + ay**2)
                 
                     b = get_coeff(ni,mi,Lx,Ly,simple2=True) # coefficient of Fourier series
-                    p[t] += b*numpy.cos(at*c**2*dt*t)*numpy.cos(ax*x)*numpy.cos(ay*y) # Fourier series summation
+                    p[t] += b*numpy.cos(at*c**2*dt*t)*numpy.sin(ax*x)*numpy.sin(ay*y) # Fourier series summation
     return p
 # functions for animations
 def init():
@@ -181,23 +179,26 @@ def animate33d(i,ps,pa,dif,lines):
     --------
     line: line object for plotting the surfaces
     """
+    zmax = pa.max()
+    zmin = pa.min()
+    
     axs.clear()
     liness = axs.plot_surface(X,Y,ps[i],rstride=5,cstride=5,cmap=cm.viridis)
-    axs.set_zlim(-1.75, 1.75)
+    axs.set_zlim(zmin,zmax)
     axs.set_xlabel('$x$')
     axs.set_ylabel('$y$')
     axs.set_title('Leapfrog')
     
     axa.clear()
     linea = axa.plot_surface(X,Y,pa[i],rstride=5,cstride=5,cmap=cm.viridis)
-    axa.set_zlim(-1.75, 1.75)
+    axa.set_zlim(zmin,zmax)
     axa.set_xlabel('$x$')
     axa.set_ylabel('$y$')
     axa.set_title('Fourier series')
     
     axd.clear()
     lined = axd.plot_surface(X,Y,dif[i],rstride=5,cstride=5,cmap=cm.viridis)
-    axd.set_zlim(-1.75, 1.75)
+    axd.set_zlim(zmin,zmax)
     axd.set_xlabel('$x$')
     axd.set_ylabel('$y$')
     axd.set_title('difference')
@@ -345,6 +346,9 @@ def plot33d(leap,analytical,dif,X,Y):
     
     writer: the artist to draw the plots
     """
+    zmax = analytical.max()
+    zmin = analytical.min()
+    
     fig = pyplot.figure(figsize=(10,10))
     axs = fig.add_subplot(221,projection='3d')
     axa = fig.add_subplot(222,projection='3d')
@@ -357,9 +361,9 @@ def plot33d(leap,analytical,dif,X,Y):
     line = (axs.plot_surface(X,Y,leap[0],rstride=5,cstride=5,cmap=cm.viridis),\
             axa.plot_surface(X,Y,analytical[0],rstride=5,cstride=5,cmap=cm.viridis),\
             axd.plot_surface(X,Y,dif[0],rstride=5,cstride=5,cmap=cm.viridis))
-    axs.set_zlim(-1.75, 1.75)
-    axa.set_zlim(-1.75, 1.75)
-    axd.set_zlim(-1.75, 1.75)
+    axs.set_zlim(zmin, zmax)
+    axa.set_zlim(zmin, zmax)
+    axd.set_zlim(zmin, zmax)
 
     return fig, line, axs, axa, axd, writer
     
@@ -388,9 +392,9 @@ def plot53d(leap,analytical,fourier,difla,diffa,X,Y):
     
     writer: the artist to draw the plots
     """
-    xmin = X.min()*2
+    xmin = X.min()
     xmax = X.max()
-    ymin = Y.min()*2
+    ymin = Y.min()
     ymax = Y.max()
     zmin = analytical.min()
     zmax = analytical.max()
