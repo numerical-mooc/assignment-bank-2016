@@ -8,35 +8,32 @@ from matplotlib import animation
 from IPython.display import HTML
 
 
-nx =201
-dx =0.2
+nx =200
+dx =0.1
 nt= 350
 x = numpy.linspace(-10,10,nx)
 D =1
 alpha = 1
+global u
 
-u= numpy.zeros(nx)
-lbound = numpy.where(x <= -9)
-ubound = numpy.where(x >= -10)            
+u = numpy.zeros(nx)
+lbound = numpy.where(x >= -2)
+ubound = numpy.where(x <= 2)
 bounds = numpy.intersect1d(lbound, ubound)
-u[bounds]=1       
+u[bounds]=0.01
 
 fig = pyplot.figure(figsize=(8,6))
-ax = pyplot.axes(xlim=(-10,10),ylim=(0,1.5))
+ax = pyplot.axes(xlim=(-10,10),ylim=(0,1.2))
 ax.set_xlabel('$x$')
 ax.set_ylabel('$u$')
-#ax.text(0,-0.25,'See how the curve levels off at u =1',color='red')
-ax.annotate('See how the curve',color='black',wrap= True, xy=(7,1),xytext=(3,1.3))
-ax.annotate('levels off at u =1',color='black',wrap= True,xy=(7,1),xytext=(3,1.2),arrowprops =dict(facecolor='black', shrink =0.04))
+#ax.annotate('See how the curve levels off at u =1',color='#ff7f0e',xy=(-5,1),xytext=(-9,1.4), arrowprops =dict(facecolor='black', shrink =0.05))
 line = ax.plot([],[],color='c',ls=':',lw=3)[0]
 
-
-
 def CatchtheFisherwaveanimate(n):
-    dt =0.0003
+    dt =0.0001
     un= numpy.zeros_like(u)
-    ax.fill_between(x,un,1.5, color='aqua')
-    ax.fill_between(x,u,0, color='green')
+    ax.fill_between(x,u,0,interpolate=True, color='yellow')
+    ax.text(0,0.6,'HIV virus',color='yellow')
     for n in range (nt):
         un= numpy.copy(u)
         u[1:-1] = un[1:-1] \
@@ -45,6 +42,5 @@ def CatchtheFisherwaveanimate(n):
         u[0] = u[1] 
         u[-1] = u[-2]
         line.set_data(x,u)
-
 anim = animation.FuncAnimation(fig,CatchtheFisherwaveanimate,\
-                               frames=nt,interval=60)
+                               frames=nt,interval=50)
