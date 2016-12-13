@@ -15,13 +15,14 @@ sub2 = fig.add_subplot(222)
 sub1.tick_params(labelsize=15)
 sub2.tick_params(labelsize=15)
 
-sub2.set_ylim(0,1.5)
+sub1.set_ylim(0,1.2)
+sub2.set_ylim(0,1.2)
 
 sub1.set_xlabel('${x}$')
-sub1.set_ylabel('${f(x) = x(1-x)}$') 
+sub1.set_ylabel('${u_o}$') 
 
 sub2.set_xlabel('${x}$')
 sub2.set_ylabel('${u}$') 
 
-sub1.set_title('Reaction kinetics', ha= 'center')
+sub1.set_title('Initial gene concentration', ha= 'center')
 sub2.set_title('Propagation of gene mutation')
