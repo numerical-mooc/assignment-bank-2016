@@ -170,13 +170,13 @@ def solve_nozzle_flow(nt, nx, dx, A, rho, V, T):
     return t_n, rho_n, V_n, T_n
 
 def plot_flow_properties(x, p, rho, T, p_an, rho_an, T_an):
-    pyplot.figure(figsize=(16,14))
+    pyplot.figure(figsize=(16,12))
     pyplot.subplot(311)
     pyplot.plot(x, p, color='k', ls='-', lw=3, label='Numerical')
     pyplot.plot(x, p_an, color='r', ls='--', lw=3, label='Analytical')
     pyplot.ylim(0,1)
     #pyplot.xlabel(r'$x$' + '\nNondimensional distance through nozzle')
-    pyplot.ylabel('Nondimensional Pressure\n' + r'$\frac{p}{p_0}$')
+    pyplot.ylabel('Nondimensional\nPressure\n' + r'$\frac{p}{p_0}$')
     pyplot.legend();
     
     pyplot.subplot(312)
@@ -184,7 +184,7 @@ def plot_flow_properties(x, p, rho, T, p_an, rho_an, T_an):
     pyplot.plot(x, rho_an, color='r', ls='--', lw=3, label='Analytical')
     pyplot.ylim(0,1)
     #pyplot.xlabel(r'$x$' + '\nNondimensional distance through nozzle')
-    pyplot.ylabel('Nondimensional Density\n' + r'$\frac{\rho}{\rho_0}$')
+    pyplot.ylabel('Nondimensional\nDensity\n' + r'$\frac{\rho}{\rho_0}$')
     pyplot.legend();
     
     pyplot.subplot(313)
@@ -192,5 +192,5 @@ def plot_flow_properties(x, p, rho, T, p_an, rho_an, T_an):
     pyplot.plot(x, T_an, color='r', ls='--', lw=3, label='Analytical')
     pyplot.ylim(0,1)
     pyplot.xlabel(r'$x$' + '\nNondimensional distance through nozzle')
-    pyplot.ylabel('Nondimensional Temperature\n' + r'$\frac{T}{T_0}$')
+    pyplot.ylabel('Nondimensional\nTemperature\n' + r'$\frac{T}{T_0}$')
     pyplot.legend();
