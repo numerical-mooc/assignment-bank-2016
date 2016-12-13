@@ -42,11 +42,14 @@ def get_coeff(n,m,Lx,Ly,simple1=False,simple2=False):
     elif simple2==True:
         # things to simplify expresion
         pi = numpy.pi
-
+        if m==1:
+            m=0.99999
+        if n==1:
+            n=0.99999
         # for f(x,y) = 2sin(pi/4 x)sin(pi/4 y)
-        bx = -8*Lx*(4*n*numpy.sin(pi*Lx/4)*numpy.sin(pi*n) + Lx*numpy.cos(pi*Lx/4)*numpy.cos(pi*n) - Lx)/(pi*(Lx**2 - 16*n**2))
-        by = -8*Ly*(4*m*numpy.sin(pi*Ly/4)*numpy.sin(pi*m) + Lx*numpy.cos(pi*Ly/4)*numpy.cos(pi*m) - Ly)/(pi*(Ly**2 - 16*m**2))
-        b = (4/(Lx*Ly))*bx*by
+        bx = -4*Lx*(Lx*numpy.cos(pi*Lx/4)*numpy.sin(pi*n) - 4*n*numpy.sin(pi*Lx/4)*numpy.cos(pi*n))/(pi*(Lx**2 - 16*n**2))
+        by = -4*Ly*(Ly*numpy.cos(pi*Ly/4)*numpy.sin(pi*m) - 4*m*numpy.sin(pi*Ly/4)*numpy.cos(pi*m))/(pi*(Ly**2 - 16*m**2))
+        b = 2*(4/(Lx*Ly))*bx*by
 
     return b
 
@@ -201,7 +204,7 @@ def animate33d(i,ps,pa,dif,lines):
     axd.set_zlim(zmin,zmax)
     axd.set_xlabel('$x$')
     axd.set_ylabel('$y$')
-    axd.set_title('difference')
+    axd.set_title('Difference of Leapfrog/Fourier')
     
     line = (liness,linea,lined)
     return line,
