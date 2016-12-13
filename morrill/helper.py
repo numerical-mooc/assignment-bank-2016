@@ -247,27 +247,27 @@ def animate53d(i,ps,pa,pf,difsa,diffa,lines):
     axa.set_title('Analytical')
     
     axf.clear()
-    linef = axd.plot_surface(X,Y,pf[i],rstride=5,cstride=5,cmap=cm.viridis)
+    linef = axf.plot_surface(X,Y,pf[i],rstride=5,cstride=5,cmap=cm.viridis)
     axf.set_zlim(zmin,zmax)
     axf.set_xlabel('$x$')
     axf.set_ylabel('$y$')
     axf.set_title('Fourier series')
     
     axda.clear()
-    lineda = axd.plot_surface(X,Y,difsa[i],rstride=5,cstride=5,cmap=cm.viridis)
+    lineda = axda.plot_surface(X,Y,difsa[i],rstride=5,cstride=5,cmap=cm.viridis)
     axda.set_zlim(zmin,zmax)
     axda.set_xlabel('$x$')
     axda.set_ylabel('$y$')
     axda.set_title('difference of Leapfrog/Analytical')
     
     axdf.clear()
-    linedf = axd.plot_surface(X,Y,diffa[i],rstride=5,cstride=5,cmap=cm.viridis)
+    linedf = axdf.plot_surface(X,Y,diffa[i],rstride=5,cstride=5,cmap=cm.viridis)
     axdf.set_zlim(zmin,zmax)
     axdf.set_xlabel('$x$')
     axdf.set_ylabel('$y$')
     axdf.set_title('difference of Fourier/Analytical')
     
-    line = (liness,linea,linedf,lineda,linedf)
+    line = (liness,linea,linef,lineda,linedf)
     return line,
 
 def plot1d(p):
