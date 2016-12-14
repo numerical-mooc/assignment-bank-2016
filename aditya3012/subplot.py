@@ -15,7 +15,7 @@ sub2 = fig.add_subplot(222)
 sub1.tick_params(labelsize=15)
 sub2.tick_params(labelsize=15)
 
-sub1.set_ylim(0,1.2)
+sub1.set_ylim(0,1)
 sub2.set_ylim(0,1.2)
 
 sub1.set_xlabel('${x}$')

@@ -10,19 +10,19 @@ from IPython.display import HTML
 
 nx =201
 dx =0.2
-nt= 350
-x = numpy.linspace(-10,10,nx)
+nt= 300
+x = numpy.linspace(0,10,nx)
 D =1
 alpha = 1
 
 u= numpy.zeros(nx)
-lbound = numpy.where(x <= -9)
-ubound = numpy.where(x >= -10)            
+lbound = numpy.where(x <= 1)
+ubound = numpy.where(x >= 0)            
 bounds = numpy.intersect1d(lbound, ubound)
 u[bounds]=1       
 
 fig = pyplot.figure(figsize=(8,6))
-ax = pyplot.axes(xlim=(-10,10),ylim=(0,1.5))
+ax = pyplot.axes(xlim=(0,10),ylim=(0,1.5))
 ax.set_xlabel('$x$')
 ax.set_ylabel('$u$')
 #ax.text(0,-0.25,'See how the curve levels off at u =1',color='red')
@@ -35,6 +35,7 @@ line = ax.plot([],[],color='c',ls=':',lw=3)[0]
 def CatchtheFisherwaveanimate(n):
     dt =0.0003
     un= numpy.zeros_like(u)
+    ax.text(6,0.3,'Absence of gene',color='green')
     ax.fill_between(x,un,1.5, color='aqua')
     ax.fill_between(x,u,0, color='green')
     for n in range (nt):
