@@ -1,3 +1,26 @@
+"""
+helper.py
+Contains functions to be used in Pressure_waves_in_a_box.ipynb
+the final project in MAE 6286
+
+Author: Michael Orrill
+
+Last edit: 12/13/16
+######################################################################
+# Contains the following functions:                                  #
+#                                                                    #
+# get_coeff() --- calculates coefficients for Fourier series         #
+# get_Fseries() - calculates Fourier series                          #
+# animate1d() --- function for FuncAnimate for contour animation     #
+# animate13d() -- function for FuncAnimate for 1 surface plot        #
+# animate33d() -- function for FuncAnimate for 3 surface plots       #
+# animate53d() -- function for FuncAnimate for 5 surface plots       #
+# plot1d() ------ generates figure and image object for contour plot #
+# plot13d() ----- generates figure and axis for 1 surface plot       # 
+# plot33d() ----- generates figure and axis for 3 surface plots      #
+# plot53d() ----- generates figure and axis for 5 surface plot2      # 
+######################################################################
+"""
 import numpy
 from matplotlib import pyplot, cm, rcParams
 from mpl_toolkits.mplot3d import Axes3D
@@ -115,20 +138,8 @@ def get_Fseries(x,y,n,m,Lx,Ly,c,nt,nx,ny,dt,f):
                     b = get_coeff(ni,mi,Lx,Ly,simple2=True) # coefficient of Fourier series
                     p[t] += b*numpy.cos(at*c**2*dt*t)*numpy.sin(ax*x)*numpy.sin(ay*y) # Fourier series summation
     return p
+	
 # functions for animations
-def init():
-    """initialization function for contour animation
-    
-    Parameters:
-    -----------
-    None
-    Returns:
-    --------
-    im: pyplot.imshow object
-    """
-    im.set_data(numpy.zeros((ny,nx)))
-    return im,
-    
 def animate1d(data):
     """Animation function for 1d contour plot
     
