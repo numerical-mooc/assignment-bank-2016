@@ -5,7 +5,10 @@
 <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 <style>
+/*This file was adapted from Lorena Barba's style guide for the numerical-mooc online course materials 
+available here: https://github.com/numerical-mooc
 
+*/
 @font-face {
     font-family: "Computer Modern";
     src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
@@ -16,12 +19,12 @@
 }
 
 div.cell { /* set cell width */
-    width: 850px;
+    width: 1000px;
 }
 
 div #notebook { /* centre the content */
     background: #fff; /* white background for content */
-    width: 1000px;
+    width: 1100px;
     margin: auto;
     padding-left: 0em;
 }
@@ -40,7 +43,7 @@ div.cell.code_cell {
     background-color: rgb(256,256,256); 
     border-radius: 0px; 
     padding: 0.5em;
-    margin-left:1em;
+    margin-left:0em;
     margin-top: 1em;
 }
 
