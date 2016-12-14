@@ -215,7 +215,7 @@ def animate33d(i,ps,pa,dif,lines):
     axd.set_zlim(zmin,zmax)
     axd.set_xlabel('$x$')
     axd.set_ylabel('$y$')
-    axd.set_title('Difference of Leapfrog/Fourier')
+    axd.set_title('Difference of Leapfrog/ Fourier')
     
     line = (liness,linea,lined)
     return line,
@@ -269,14 +269,14 @@ def animate53d(i,ps,pa,pf,difsa,diffa,lines):
     axda.set_zlim(zmin,zmax)
     axda.set_xlabel('$x$')
     axda.set_ylabel('$y$')
-    axda.set_title('difference of Leapfrog/Analytical')
+    axda.set_title('Difference of Leapfrog/ Analytical')
     
     axdf.clear()
     linedf = axdf.plot_surface(X,Y,diffa[i],rstride=5,cstride=5,cmap=cm.viridis)
     axdf.set_zlim(zmin,zmax)
     axdf.set_xlabel('$x$')
     axdf.set_ylabel('$y$')
-    axdf.set_title('difference of Fourier/Analytical')
+    axdf.set_title('Difference of Fourier/ Analytical')
     
     line = (liness,linea,linef,lineda,linedf)
     return line,
